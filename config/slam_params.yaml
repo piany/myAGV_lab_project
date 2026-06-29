@@ -1,0 +1,32 @@
+# config/slam_params.yaml
+# slam_toolbox configuration for myAGV (RPLiDAR A1/A2)
+# Used in real-robot mode only; sim uses the Python OccupancyGrid.
+slam_toolbox:
+  ros__parameters:
+    # ── Solver ──────────────────────────────────────────────────────────────
+    solver_plugin: solver_plugins::CeresSolver
+    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
+    ceres_preconditioner: SCHUR_JACOBI
+
+    # ── Frames (must match your URDF / TF tree) ──────────────────────────────
+    odom_frame:  odom
+    map_frame:   map
+    base_frame:  base_footprint
+    scan_topic:  /scan
+
+    # ── Scan matching ────────────────────────────────────────────────────────
+    use_scan_matching:    true
+    use_scan_barycenter:  true
+    minimum_travel_distance:  0.10   # metres before processing new scan
+    minimum_travel_heading:   0.20   # radians
+
+    # ── Map ──────────────────────────────────────────────────────────────────
+    map_update_interval:  5.0        # seconds
+    resolution:           0.05       # 5 cm per cell
+    max_laser_range:      12.0       # metres  (RPLiDAR A1 max ≈ 12 m)
+    minimum_time_interval: 0.5
+
+    # ── Mode ─────────────────────────────────────────────────────────────────
+    # mapping      = build a new map
+    # localization = use saved map (Phase 2 onwards)
+    mode: mapping

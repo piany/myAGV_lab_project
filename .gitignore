@@ -1,0 +1,18 @@
+# Virtual environment
+../.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Secrets
+../.env
+
+# IDE
+.vscode/
+*.egg-info/
+
+# Generated map images (optional — remove if you want to track them)
+maps/*.png
